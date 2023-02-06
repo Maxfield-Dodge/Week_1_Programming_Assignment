@@ -4,9 +4,6 @@ public class PolygonTester {
         Polygon poly1 = new Polygon(5,6.86534543,"pentagon");
         System.out.println(poly1);
 
-        System.out.println(poly1.calculateArea());
-        System.out.println(poly1.calculatePerimeter());
-
         System.out.println("\nThis is the output using the default constructor.");
         Polygon poly2 = new Polygon();
         System.out.println(poly2);
@@ -14,6 +11,5 @@ public class PolygonTester {
         System.out.println("\nThis is an example output for an invalid polygon.");
         Polygon poly3 = new Polygon(1,785,"line");
         System.out.println(poly3);
-
     }
 }

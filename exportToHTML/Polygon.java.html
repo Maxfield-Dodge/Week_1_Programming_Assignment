@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Polygon.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Polygon.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java.text.DecimalFormat</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.lang.Math</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Polygon {</span>
+   <span class="s0">private int </span><span class="s1">numSides</span><span class="s0">;</span>
+   <span class="s0">private double </span><span class="s1">sideLength</span><span class="s0">;</span>
+   <span class="s0">private </span><span class="s1">String shapeType</span><span class="s0">;</span>
+   <span class="s0">private double </span><span class="s1">perimeter</span><span class="s0">;</span>
+   <span class="s0">private double </span><span class="s1">apothem</span><span class="s0">;</span>
+   <span class="s0">private double </span><span class="s1">area</span><span class="s0">;</span>
+   <span class="s0">private double </span><span class="s1">pi = </span><span class="s2">3.14159265359</span><span class="s0">;</span>
+
+   <span class="s0">public </span><span class="s1">Polygon(){</span>
+       <span class="s1">numSides = </span><span class="s2">3</span><span class="s0">;</span>
+       <span class="s1">sideLength = </span><span class="s2">1.0</span><span class="s0">;</span>
+       <span class="s1">shapeType = </span><span class="s3">&quot;triangle&quot;</span><span class="s0">;</span>
+       <span class="s1">perimeter = sideLength*numSides</span><span class="s0">;</span>
+   <span class="s1">}</span>
+
+   <span class="s0">public </span><span class="s1">Polygon(</span><span class="s0">int </span><span class="s1">ns</span><span class="s0">, double </span><span class="s1">sl</span><span class="s0">, </span><span class="s1">String st){</span>
+           <span class="s1">numSides = ns</span><span class="s0">;</span>
+           <span class="s1">sideLength = sl</span><span class="s0">;</span>
+           <span class="s1">shapeType = st</span><span class="s0">;</span>
+           <span class="s1">perimeter = sideLength * numSides</span><span class="s0">;</span>
+   <span class="s1">}</span>
+
+   <span class="s0">public int </span><span class="s1">getNumSides(){</span>
+       <span class="s0">return </span><span class="s1">numSides</span><span class="s0">;</span>
+   <span class="s1">}</span>
+
+    <span class="s0">public double </span><span class="s1">getSideLength(){</span>
+        <span class="s0">return </span><span class="s1">sideLength</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">String getShapeType(){</span>
+        <span class="s0">return </span><span class="s1">shapeType</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setNumSides(</span><span class="s0">int </span><span class="s1">ns){</span>
+        <span class="s1">numSides = ns</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setSideLength(</span><span class="s0">double </span><span class="s1">sl){</span>
+        <span class="s1">sideLength = sl</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setShapeType(String st){</span>
+        <span class="s1">shapeType = st</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">String calculatePerimeter(){</span>
+       <span class="s0">return </span><span class="s3">&quot;It has a perimeter of &quot; </span><span class="s1">+ perimeter</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">public </span><span class="s1">String calculateArea(){</span>
+        <span class="s1">DecimalFormat df = </span><span class="s0">new </span><span class="s1">DecimalFormat(</span><span class="s3">&quot;###.###&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">apothem = Math.toRadians(</span><span class="s2">180</span><span class="s1">/((</span><span class="s0">double</span><span class="s1">)numSides))</span><span class="s0">;</span>
+        <span class="s1">apothem = Math.tan(apothem)</span><span class="s0">;</span>
+        <span class="s1">apothem *= </span><span class="s2">2</span><span class="s0">;</span>
+        <span class="s1">apothem = sideLength / apothem</span><span class="s0">;</span>
+        <span class="s1">area = ((numSides * sideLength * apothem)/</span><span class="s2">2</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">return </span><span class="s3">&quot;It has an area of &quot; </span><span class="s1">+ df.format(area) + </span><span class="s3">&quot;.&quot;</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public </span><span class="s1">String toString(){</span>
+       <span class="s1">DecimalFormat df = </span><span class="s0">new </span><span class="s1">DecimalFormat(</span><span class="s3">&quot;###.###&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s0">if</span><span class="s1">(numSides &lt; </span><span class="s2">3 </span><span class="s1">|| sideLength &lt; </span><span class="s2">0</span><span class="s1">){</span>
+            <span class="s0">return </span><span class="s3">&quot;Not a valid polygon&quot;</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">else </span><span class="s1">{</span>
+            <span class="s0">return </span><span class="s3">&quot;Your shape is a &quot; </span><span class="s1">+ shapeType + </span><span class="s3">&quot; and it has &quot; </span><span class="s1">+ numSides + </span><span class="s3">&quot; sides.</span><span class="s0">\n</span><span class="s3">It has a side length of &quot; </span><span class="s1">+</span>
+                    <span class="s1">sideLength + </span><span class="s3">&quot;.</span><span class="s0">\n</span><span class="s3">It has a perimeter of &quot; </span><span class="s1">+ df.format(perimeter) + </span><span class="s3">&quot; units.&quot;</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
