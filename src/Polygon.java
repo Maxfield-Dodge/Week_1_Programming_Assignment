@@ -1,7 +1,3 @@
-import java.text.DecimalFormat;
-
-import java.lang.Math;
-
 public class Polygon {
    private int numSides;
 
@@ -22,13 +18,14 @@ public class Polygon {
    public Polygon() {
        numSides = 3;
        sideLength = 1.0;
-       shapeType = "triangle";
-       perimeter = sideLength*numSides;
+       shapeType = "Triangle";
    }
 
     /**
-     * Creates a polygon with using user parameters
+     * Creates a polygon with user parameters
      * and calculates perimeter.
+     * Has a validation check to confirm each value is valid,
+     * otherwise replaced with default values
      * @param theNumSides desired number of sides
      * @param theSideLength desired side length
      * @param theShapeType desired shape type
@@ -37,7 +34,12 @@ public class Polygon {
            numSides = theNumSides;
            sideLength = theSideLength;
            shapeType = theShapeType;
-           perimeter = sideLength * numSides;
+       if (numSides < 3 || sideLength <= 0) {
+           System.out.println("Invalid polygon. Set to default of 3 sides, side length 1.0 and shape Triangle.");
+           numSides = 3;
+           sideLength = 1.0;
+           shapeType = "Triangle";
+       }
    }
 
    public int getNumSides(){
@@ -52,50 +54,72 @@ public class Polygon {
         return shapeType;
     }
 
+    public double getArea() {
+       return area;
+   }
+
+   public double getPerimeter() {
+       return area;
+   }
+
     /**
-     * Changes number of sides of polygon
+     * Changes number of sides of polygon and
+     * checks if the number of sides is 3 or greater otherwise sets to default of 3 sides.
      * @param newNumSides desired numbers of sides
      */
     public void setNumSides(int newNumSides) {
-        numSides = newNumSides;
+        if (newNumSides >= 3) {
+            numSides = newNumSides;
+        }
+        else {
+            System.out.println("Invalid number of sides, number of sides didn't change.");
+        }
     }
 
     /**
-     * Changes side length of polygon
+     * Changes side length of polygon and
+     * checks if sideLength is positive, otherwise sets side length to 1.0.
      * @param newSideLength desired side length
      */
     public void setSideLength(double newSideLength) {
-        sideLength = newSideLength;
+        if(newSideLength > 0) {
+            sideLength = newSideLength;
+        }
+        else {
+            System.out.println("Invalid side length, side length didn't change.");
+        }
     }
 
     /**
      *Changes shape type of polygon
-     * @param newShapeType desired shape type
+     * @param newShapeType desired shape name
      */
-    public void setShapeType(String newShapeType) {
+    public void setShapeName(String newShapeType) {
         shapeType = newShapeType;
     }
 
     /**
-     * returns the perimeter
-     * @return
+     * calculates the perimeter
+     * @return perimeter
      */
-    public String calculatePerimeter() {
-       return "It has a perimeter of " + perimeter;
+    public double calculatePerimeter() {
+       perimeter = sideLength * numSides;
+       perimeter = Math.round(perimeter * 1000) / 1000.0;
+       return perimeter;
     }
 
     /**
      * Calculates the area and returns formatted to 3 decimal places
      * @return area with 3 decimal places
      */
-    public String calculateArea() {
-        DecimalFormat df = new DecimalFormat("###.###");
+    public double calculateArea() {
         apothem = Math.toRadians(180/((double) numSides));
         apothem = Math.tan(apothem);
         apothem *= 2;
         apothem = sideLength / apothem;
         area = ((numSides * sideLength * apothem)/2);
-        return "It has an area of " + df.format(area) + ".";
+        area = Math.round(area * 1000) / 1000.0;
+        return area;
     }
 
     /**
@@ -105,7 +129,6 @@ public class Polygon {
      * side length, and perimeter formatted to 3 decimals places
      */
     public String toString() {
-       DecimalFormat df = new DecimalFormat("###.###");
         if (numSides < 3 || sideLength < 0){
             return "Not a valid polygon";
         }
@@ -113,7 +136,7 @@ public class Polygon {
             return "Your shape is a " + shapeType + " and it has " +
                     numSides + " sides.\nIt has a side length of " +
                     sideLength + ".\nIt has a perimeter of " +
-                    df.format(perimeter) + " units.";
+                    perimeter + " units and an area of " + area + " units.";
         }
     }
 }
