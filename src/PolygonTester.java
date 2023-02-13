@@ -45,7 +45,6 @@ public class PolygonTester {
         System.out.println(poly3.getNumSides() == 4);
         System.out.println(poly3.getSideLength() == 2.4738);
         System.out.println(poly3.calculatePerimeter() == 9.895);
-        System.out.println(poly3.calculateArea());
         System.out.println(poly3.getArea() == 6.120);
 
         System.out.println("\n I'm now changing the shape to be invalid with a side length of -3. Nothing else should change");
@@ -53,20 +52,15 @@ public class PolygonTester {
         System.out.println(poly3.getShapeType().equals("Square"));
         System.out.println(poly3.getNumSides() == 4);
         System.out.println(poly3.getSideLength() == 2.4738);
-        System.out.println(poly3.getSideLength());
         System.out.println(poly3.calculatePerimeter() == 9.895);
-        System.out.println(poly3.calculatePerimeter());
         System.out.println(poly3.getArea() == 6.120);
 
         System.out.println("\n I'm now changing the shape to be invalid with -12 sides. Nothing else should change");
         poly3.setNumSides(-12);
         System.out.println(poly3.getShapeType().equals("Square"));
         System.out.println(poly3.getNumSides() == 4);
-        System.out.println(poly3.getNumSides());
         System.out.println(poly3.getSideLength() == 2.4738);
-        System.out.println(poly3.getSideLength());
         System.out.println(poly3.calculatePerimeter() == 9.895);
-        System.out.println(poly3.calculatePerimeter());
         System.out.println(poly3.getArea() == 6.120);
     }
 }

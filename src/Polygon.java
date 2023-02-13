@@ -13,7 +13,6 @@ public class Polygon {
 
     /**
      * Creates a default polygon, a triangle with 3 sides and side length 1.0
-     * and calculates the perimeter.
      */
    public Polygon() {
        numSides = 3;
@@ -23,9 +22,8 @@ public class Polygon {
 
     /**
      * Creates a polygon with user parameters
-     * and calculates perimeter.
      * Has a validation check to confirm each value is valid,
-     * otherwise replaced with default values
+     * if one value in invalid creates a default polygon
      * @param theNumSides desired number of sides
      * @param theSideLength desired side length
      * @param theShapeType desired shape type
@@ -63,8 +61,8 @@ public class Polygon {
    }
 
     /**
-     * Changes number of sides of polygon and
-     * checks if the number of sides is 3 or greater otherwise sets to default of 3 sides.
+     * Changes number of sides of polygon
+     * if the number of sides is 3 or greater otherwise prints Invalid
      * @param newNumSides desired numbers of sides
      */
     public void setNumSides(int newNumSides) {
@@ -77,8 +75,8 @@ public class Polygon {
     }
 
     /**
-     * Changes side length of polygon and
-     * checks if sideLength is positive, otherwise sets side length to 1.0.
+     * Changes side length of polygon
+     * if sideLength is positive otherwise prints Invalid
      * @param newSideLength desired side length
      */
     public void setSideLength(double newSideLength) {
@@ -100,7 +98,7 @@ public class Polygon {
 
     /**
      * calculates the perimeter
-     * @return perimeter
+     * @return calculated perimeter
      */
     public double calculatePerimeter() {
        perimeter = sideLength * numSides;
@@ -113,30 +111,20 @@ public class Polygon {
      * @return area with 3 decimal places
      */
     public double calculateArea() {
-        apothem = Math.toRadians(180/((double) numSides));
-        apothem = Math.tan(apothem);
-        apothem *= 2;
-        apothem = sideLength / apothem;
+        apothem = sideLength/(Math.tan(Math.PI/((double) numSides))*2);
         area = ((numSides * sideLength * apothem)/2);
         area = Math.round(area * 1000) / 1000.0;
         return area;
     }
 
     /**
-     * Checks if a polygon is valid and returns either
-     * invalid or the attributes of the object
-     * @return invalid or the shape type, numbers of sides,
-     * side length, and perimeter formatted to 3 decimals places
+     * Returns a description of the polygon
+     * @return a String describing shapeType, numSides, sideLength, and perimeter.
      */
     public String toString() {
-        if (numSides < 3 || sideLength < 0){
-            return "Not a valid polygon";
-        }
-        else {
-            return "Your shape is a " + shapeType + " and it has " +
+        return "Your shape is a " + shapeType + " and it has " +
                     numSides + " sides.\nIt has a side length of " +
                     sideLength + ".\nIt has a perimeter of " +
-                    perimeter + " units and an area of " + area + " units.";
-        }
+                    perimeter + " units.";
     }
 }
